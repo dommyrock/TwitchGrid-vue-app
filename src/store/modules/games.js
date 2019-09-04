@@ -31,7 +31,6 @@ const mutations = {
 }
 //To dispatch actions or commit mutations in the global namespace, pass { root: true } as the 3rd argument to dispatch and commit.
 
-//Actions TODO
 const actions = {
     async getGamesData({ commit, state }) {
         return new Promise(async (resolve, reject) => {

@@ -10,9 +10,10 @@
         <game-cards
           v-for="item in gamesData"
           :img="item.box_art_url"
+          :imgId="item.id"
           :title="item.name"
           :key="item.id"
-          @click="handleClick()"
+          @clicked="handleChildClick"
         />
       </b-row>
     </b-container>
@@ -47,17 +48,21 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({ setGamesData: "games/SET_GAMES_DATA" }),
-    ...mapActions({ getGamesData: "games/getGamesData" }),
+    // ...mapMutations({ setGamesData: "games/SET_GAMES_DATA" }), called in games/actions to mutate state
+    ...mapActions({
+      getGamesData: "games/getGamesData",
+      getGameStreamsData: "games/getGameStreamsData"
+    }),
 
     async getData() {
       const data = await this.getGamesData();
     },
-    handleClick(event, gameId) {
-      console.log("From the child:", gameId);
+    handleChildClick(value) {
+      console.log("From the child:" + value);
+      this.getGameStreamsData();
     },
-    async getGameData(gameId) {
-      const data = await this.getStreamsData(gameId);
+    async getGameStreamsData(gameId) {
+      const data = await this.getGameStreamsData(gameId);
     }
   }
 
