@@ -1,10 +1,11 @@
 <template>
   <div>
     <h4>Top Game streams by view count:</h4>
+    {{gamesStreamsData}}
     <b-container fluid>
       <b-row align-h="center">
-        <stream-card
-          v-for="item in streamsData"
+        <streams-card
+          v-for="item in gamesStreamsData"
           :img="item.thumbnail_url"
           :title="item.title"
           :userName="item.user_name"
@@ -16,30 +17,33 @@
   </div>
 </template>
 
-<script>
-import { mapState, mapActions, mapMutations } from "vuex";
-import StreamCard from "./StreamsCard";
+ <script>
+import router from "../../router";
+import { mapState, mapActions } from "vuex";
+import StreamsCard from "./StreamsCard";
+
 export default {
-  name: "Streams",
-  components: { StreamCard },
+  name: "TopGameStreams",
+  components: { StreamsCard },
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    this.getGameStreamsData();
+  },
   computed: {
     ...mapState({
-      streamsData: state => state.games.streamsResponseData
+      gamesStreamsData: state => state.games.gameStreamsResponseData
     })
   },
   methods: {
-    ...mapMutations({ setStreamsData: "games/SET_STREAMS_DATA" }),
-    ...mapActions({ getStreamsData: "games/getStreamsData" }),
-    //pass gameId on click all the way to api fetch method "getStreamsData"
-    handleClick(gameId) {
-      this.getData(gameId);
-    },
-    async getData(gameId) {
-      const data = await this.getStreamsData(gameId);
+    ...mapActions({
+      getGameStreamsData: "games/getGameStreamsData"
+    }),
+
+    async getGameStreamsData(gameId) {
+      // router.push({ name: "TopGameStreams", params: { gameId: { gameId } } });
+      const data = await this.getGameStreamsData(gameId); //switch to TopGameStreams route -component
     }
   }
 };

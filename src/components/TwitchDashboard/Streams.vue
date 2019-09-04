@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     ...mapState({
-      streamsData: state => state.games.streamsResponseData
+      streamsData: state => state.games.streamsResponseData //state.games -->because it's in games module
     })
   },
   methods: {

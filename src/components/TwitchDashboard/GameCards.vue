@@ -10,7 +10,7 @@
       style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-button href="#" @click="handleGameId(imgId)" variant="primary">Live channels</b-button>
+      <b-button href="#" @click="handleGameId(cardId)" variant="primary">Live channels</b-button>
     </b-card>
   </div>
 </template>
@@ -19,15 +19,15 @@ export default {
   name: "GameCard",
   props: {
     title: String,
-    imgId: String,
+    cardId: String,
     img: {
       type: String,
       required: true
     }
   },
   methods: {
-    handleGameId(imgId) {
-      this.$emit("clicked", imgId);
+    handleGameId(cardId) {
+      this.$emit("clicked", cardId);
     }
   }
 };

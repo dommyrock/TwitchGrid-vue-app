@@ -4,7 +4,7 @@ import Router from "vue-router";
 
 const Games = () => import("./components/TwitchDashboard/Games");
 const Streams = () => import("./components/TwitchDashboard/Streams");
-const GameStreams = () => import("./components/TwitchDashboard/TopGameStreams")
+const TopGameStreams = () => import("./components/TwitchDashboard/TopGameStreams")
 
 Vue.use(Router);
 
@@ -21,9 +21,14 @@ export default new Router({
       component: Streams
     },
     {
-      path: "games/:id",
-      component: GameStreams
-    }
+      path: "games/:gameId",
+      name: "TopGameStreams",
+      component: TopGameStreams
+    },
+    // {
+    //   path: "brodcaster/:id/clips", TODO
+    //   Component: Clips //TODO ... when you go to specific streamer page (it will have redirect btn/link to channels clips)
+    // }
 
   ],
   mode: "history" //disable # prefix in routes

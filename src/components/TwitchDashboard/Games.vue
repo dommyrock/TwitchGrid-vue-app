@@ -10,7 +10,7 @@
         <game-cards
           v-for="item in gamesData"
           :img="item.box_art_url"
-          :imgId="item.id"
+          :cardId="item.id"
           :title="item.name"
           :key="item.id"
           @clicked="handleChildClick"
@@ -25,6 +25,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 // import { createNamespacedHelpers } from "vuex";
 // const { mapState, mapActions, mapMutations } = createNamespacedHelpers("games");  Do this for shorten named spaces assign!
 import GameCards from "./GameCards";
+import router from "../../router";
 
 //differrence between computed prop. and methods is in CACHE !!(so computed props. are usually preffered)
 
@@ -62,7 +63,9 @@ export default {
       this.getGameStreamsData();
     },
     async getGameStreamsData(gameId) {
-      const data = await this.getGameStreamsData(gameId);
+      router.push({ name: "TopGameStreams", params: { gameId: { gameId } } });
+      //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+      // const data = await this.getGameStreamsData(gameId); //switch to TopGameStreams route -component
     }
   }
 

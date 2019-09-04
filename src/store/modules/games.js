@@ -8,12 +8,15 @@ Vue.use(Vuex)
 //mutation -types
 const types = {
     SET_GAMES_DATA: "SET_GAMES_DATA",
-    SET_STREAMS_DATA: "SET_STREAMS_DATA"
+    SET_STREAMS_DATA: "SET_STREAMS_DATA",
+    SET_GAMESTREAMS_DATA: "SET_GAMESTREAMS_DATA"
 }
 const state = {
     test: 'test-games-state',
     gamesResponseData: [],
-    streamsResponseData: []
+    streamsResponseData: [],
+    gameStreamsResponseData: []
+
 }
 //getting state
 const getters = {
@@ -26,6 +29,9 @@ const mutations = {
     },
     [types.SET_STREAMS_DATA](state, data) {
         state.streamsResponseData = data
+    },
+    [types.SET_GAMESTREAMS_DATA](state, data) {
+        state.gameStreamsResponseData = data
     }
 
 }
@@ -73,13 +79,13 @@ const actions = {
     async getGameStreamsData({ commit }, gameId) {
         return new Promise(async (resolve, reject) => {
             try {
-                const response = await streamsApi.getGameStreams() + gameId.then(res => {
+                const response = await streamsApi.getGameStreams(gameId).then(res => {
                     let dataArray = res.data
                     let replacedArray = dataArray.map(item => {
                         let newUrl = item.thumbnail_url.replace("{width}", "300").replace("{height}", "300");
                         item.thumbnail_url = newUrl
                     })
-                    commit(types.SET_STREAMS_DATA, dataArray)
+                    commit(types.SET_GAMESTREAMS_DATA, dataArray)
                     //return if sucessfull
                     resolve(dataArray)
                 })
