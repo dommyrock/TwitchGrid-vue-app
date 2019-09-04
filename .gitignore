@@ -1,0 +1,4 @@
+node_modules
+/dist
+src/api/api.js
+src/api/streamsApi.js
