@@ -1,7 +1,6 @@
 <template>
   <div>
     <h4>Top Game streams by view count:</h4>
-    {{gamesStreamsData}}
     <b-container fluid>
       <b-row align-h="center">
         <streams-card
@@ -14,11 +13,11 @@
         />
       </b-row>
     </b-container>
+    {{gamesStreamsData}}
   </div>
 </template>
 
  <script>
-import router from "../../router";
 import { mapState, mapActions } from "vuex";
 import StreamsCard from "./StreamsCard";
 
@@ -29,7 +28,7 @@ export default {
     return {};
   },
   mounted() {
-    this.getGameStreamsData();
+    this.getData();
   },
   computed: {
     ...mapState({
@@ -40,10 +39,8 @@ export default {
     ...mapActions({
       getGameStreamsData: "games/getGameStreamsData"
     }),
-
-    async getGameStreamsData(gameId) {
-      // router.push({ name: "TopGameStreams", params: { gameId: { gameId } } });
-      const data = await this.getGameStreamsData(gameId); //switch to TopGameStreams route -component
+    async getData() {
+      const data = await this.getGameStreamsData("18122"); //switch to TopGameStreams route -component
     }
   }
 };

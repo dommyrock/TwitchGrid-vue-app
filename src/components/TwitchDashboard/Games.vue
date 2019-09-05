@@ -13,7 +13,7 @@
           :cardId="item.id"
           :title="item.name"
           :key="item.id"
-          @clicked="handleChildClick"
+          @clickedCard="handleChildClick"
         />
       </b-row>
     </b-container>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 // import { createNamespacedHelpers } from "vuex";
 // const { mapState, mapActions, mapMutations } = createNamespacedHelpers("games");  Do this for shorten named spaces assign!
 import GameCards from "./GameCards";
@@ -51,21 +51,14 @@ export default {
   methods: {
     // ...mapMutations({ setGamesData: "games/SET_GAMES_DATA" }), called in games/actions to mutate state
     ...mapActions({
-      getGamesData: "games/getGamesData",
-      getGameStreamsData: "games/getGameStreamsData"
+      getGamesData: "games/getGamesData"
     }),
 
     async getData() {
       const data = await this.getGamesData();
     },
     handleChildClick(value) {
-      console.log("From the child:" + value);
-      this.getGameStreamsData();
-    },
-    async getGameStreamsData(gameId) {
-      router.push({ name: "TopGameStreams", params: { gameId: { gameId } } });
-      //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
-      // const data = await this.getGameStreamsData(gameId); //switch to TopGameStreams route -component
+      console.log("Emitted From GameCards the child:  Card ID=" + value);
     }
   }
 

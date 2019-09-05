@@ -15,6 +15,8 @@
   </div>
 </template>
 <script>
+//cardId == game_id (prop name from API)
+import router from "../../router";
 export default {
   name: "GameCard",
   props: {
@@ -27,8 +29,12 @@ export default {
   },
   methods: {
     handleGameId(cardId) {
-      this.$emit("clicked", cardId);
+      // call this method on click & emit "cardId"value to Parent (so it knows what endpoint to request)
+      this.$emit("clickedCard", cardId);
+      router.push({ name: "TopGameStreams", params: { gameId: { cardId } } });
     }
+    //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
   }
 };
 </script>
+<!--redirect to topgamestreams compoenent ...import streamcard there and pass game id to it  -->

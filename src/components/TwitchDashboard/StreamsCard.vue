@@ -23,6 +23,7 @@ export default {
     title: String,
     userName: String,
     viewCount: Number,
+    cardId: String,
     img: {
       type: String,
       required: true
