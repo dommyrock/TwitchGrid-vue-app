@@ -58,7 +58,7 @@ export default {
       const data = await this.getGamesData();
     },
     handleChildClick(value) {
-      console.log("Emitted From GameCards the child:  Card ID=" + value);
+      console.log("Emitted From GameCards child:  Card ID=" + value);
     }
   }
 

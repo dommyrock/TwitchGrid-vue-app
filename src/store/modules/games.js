@@ -9,10 +9,12 @@ Vue.use(Vuex)
 const types = {
     SET_GAMES_DATA: "SET_GAMES_DATA",
     SET_STREAMS_DATA: "SET_STREAMS_DATA",
-    SET_GAMESTREAMS_DATA: "SET_GAMESTREAMS_DATA"
+    SET_GAMESTREAMS_DATA: "SET_GAMESTREAMS_DATA",
+    SET_CURRENTGAMEID: "SET_CURRENTGAMEID"
 }
 const state = {
     test: 'test-games-state',
+    currentGameId: "",
     gamesResponseData: [],
     streamsResponseData: [],
     gameStreamsResponseData: []
@@ -32,6 +34,9 @@ const mutations = {
     },
     [types.SET_GAMESTREAMS_DATA](state, data) {
         state.gameStreamsResponseData = data
+    },
+    [types.SET_CURRENTGAMEID](state, gameId) {
+        state.currentGameId = gameId
     }
 
 }

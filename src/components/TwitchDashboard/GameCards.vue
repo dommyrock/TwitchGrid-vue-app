@@ -17,6 +17,8 @@
 <script>
 //cardId == game_id (prop name from API)
 import router from "../../router";
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "GameCard",
   props: {
@@ -27,10 +29,18 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapState({
+      gameId: state => state.games.currentGameId
+    })
+  },
   methods: {
+    ...mapMutations({ setGameId: "games/SET_CURRENTGAMEID" }),
+
     handleGameId(cardId) {
-      // call this method on click & emit "cardId"value to Parent (so it knows what endpoint to request)
       this.$emit("clickedCard", cardId);
+      //SET currentGameId to clicked cardId == game_id
+      this.setGameId(cardId); //Mutation called to update state
       router.push({ name: "TopGameStreams", params: { gameId: { cardId } } });
     }
     //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>

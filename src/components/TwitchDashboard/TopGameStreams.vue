@@ -13,7 +13,6 @@
         />
       </b-row>
     </b-container>
-    {{gamesStreamsData}}
   </div>
 </template>
 
@@ -32,7 +31,8 @@ export default {
   },
   computed: {
     ...mapState({
-      gamesStreamsData: state => state.games.gameStreamsResponseData
+      gamesStreamsData: state => state.games.gameStreamsResponseData,
+      gameId: state => state.games.currentGameId
     })
   },
   methods: {
@@ -40,7 +40,9 @@ export default {
       getGameStreamsData: "games/getGameStreamsData"
     }),
     async getData() {
-      const data = await this.getGameStreamsData("18122"); //switch to TopGameStreams route -component
+      //Fetch "currentGameId" state
+      const game_id = this.gameId;
+      const data = await this.getGameStreamsData(game_id); //switch to TopGameStreams route -component
     }
   }
 };
