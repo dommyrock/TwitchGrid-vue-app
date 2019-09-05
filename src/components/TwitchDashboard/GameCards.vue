@@ -41,7 +41,12 @@ export default {
       this.$emit("clickedCard", cardId);
       //SET currentGameId to clicked cardId == game_id
       this.setGameId(cardId); //Mutation called to update state
-      router.push({ name: "TopGameStreams", params: { gameId: { cardId } } });
+      //fetch game from store
+
+      router.push({
+        name: "TopGameStreams",
+        params: { gameId: cardId }
+      });
     }
     //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
   }

@@ -21,7 +21,7 @@ export default new Router({
       component: Streams
     },
     {
-      path: "games/:gameId",
+      path: "/game/:gameId",
       name: "TopGameStreams",
       component: TopGameStreams
     },
