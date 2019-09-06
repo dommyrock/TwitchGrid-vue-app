@@ -10,6 +10,7 @@
           :userName="item.user_name"
           :viewCount="item.viewer_count"
           :key="item.id"
+          :user_id="item.user_id"
         />
       </b-row>
     </b-container>

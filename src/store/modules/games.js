@@ -12,7 +12,7 @@ const types = {
     SET_GAMESTREAMS_DATA: "SET_GAMESTREAMS_DATA",
     SET_CURRENTGAMEID: "SET_CURRENTGAMEID",
     SET_GAME_CLIPS_DATA: "SET_GAME_CLIPS_DATA",
-    SET_BRODCASTER_CLIPS_DATA: "SET_BRODCASTER_CLIPS_DATA",
+    SET_BROADCASTER_CLIPS_DATA: "SET_BROADCASTER_CLIPS_DATA",
     SET_BROADCASTER_ID: "SET_BROADCASTER_ID",
     SET_GAME_NAME: "SET_GAME_NAME",
     SET_BROADCASTER_NAME: "SET_BROADCASTER_NAME"
@@ -54,7 +54,7 @@ const mutations = {
     [types.SET_GAME_CLIPS_DATA](state, data) {
         state.gameClipsResponseData = data
     },
-    [types.SET_BRODCASTER_CLIPS_DATA](state, data) {
+    [types.SET_BROADCASTER_CLIPS_DATA](state, data) {
         state.brodcasterClipsResponseData = data
     },
     [types.SET_BROADCASTER_ID](state, broadcasterId) {
@@ -145,16 +145,16 @@ const actions = {
             }
         })
     },
-    async getBroadcasterClipsData({ commit }, brodcasterId) {
+    async getBroadcasterClipsData({ commit }, broadcasterId) {
         return new Promise(async (resolve, reject) => {
             try {
-                const response = await streamsApi.getBroadcasterClips(brodcasterId).then(res => {
+                const response = await streamsApi.getBroadcasterClips(broadcasterId).then(res => {
                     let dataArray = res.data
                     let replacedArray = dataArray.map(item => {
                         let newUrl = item.thumbnail_url.replace("{width}", "300").replace("{height}", "300");
                         item.thumbnail_url = newUrl
                     })
-                    commit(types.SET_BRODCASTER_CLIPS_DATA, dataArray)
+                    commit(types.SET_BROADCASTER_CLIPS_DATA, dataArray)
                     //return if sucessfull
                     resolve(dataArray)
                 })
