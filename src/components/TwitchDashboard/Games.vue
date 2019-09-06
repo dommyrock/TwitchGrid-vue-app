@@ -25,7 +25,6 @@ import { mapState, mapActions } from "vuex";
 // import { createNamespacedHelpers } from "vuex";
 // const { mapState, mapActions, mapMutations } = createNamespacedHelpers("games");  Do this for shorten named spaces assign!
 import GameCards from "./Cards/GameCards";
-import router from "../../router";
 
 //differrence between computed prop. and methods is in CACHE !!(so computed props. are usually preffered)
 

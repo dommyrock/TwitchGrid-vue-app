@@ -20,7 +20,6 @@
  <script>
 import { mapState, mapActions } from "vuex";
 import StreamsCard from "./Cards/StreamsCard";
-import { stat } from "fs";
 
 export default {
   name: "TopGameStreams",
