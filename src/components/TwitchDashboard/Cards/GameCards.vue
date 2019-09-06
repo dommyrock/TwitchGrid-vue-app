@@ -16,7 +16,7 @@
 </template>
 <script>
 //cardId == game_id (prop name from API)
-import router from "../../router";
+import router from "../../../router";
 import { mapState, mapMutations } from "vuex";
 
 export default {

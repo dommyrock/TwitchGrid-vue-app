@@ -18,7 +18,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import StreamCard from "./StreamsCard";
+import StreamCard from "./Cards/StreamsCard";
 export default {
   name: "Streams",
   components: { StreamCard },

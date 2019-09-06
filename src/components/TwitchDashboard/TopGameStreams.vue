@@ -18,7 +18,7 @@
 
  <script>
 import { mapState, mapActions } from "vuex";
-import StreamsCard from "./StreamsCard";
+import StreamsCard from "./Cards/StreamsCard";
 
 export default {
   name: "TopGameStreams",
