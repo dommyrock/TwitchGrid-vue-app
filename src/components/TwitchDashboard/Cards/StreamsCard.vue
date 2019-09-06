@@ -11,16 +11,23 @@
       class="mb-2"
     >
       <b-card-text>{{"Viewers: "+viewCount}}</b-card-text>
-      <!-- <bcard-textz>{{title}}</bcard-textz> removed to keep cards smaller-->
-      <!-- <b-button href="#" variant="primary">Live channels</b-button> -->
+      <b-button
+        href="#"
+        @click="handleBroadcasterId(user_id,userName)"
+        variant="outline-info"
+      >Top broadcaster Clips</b-button>
     </b-card>
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
+import router from "../../../router";
+
 export default {
   name: "GameCard",
   props: {
     title: String,
+    user_id: String,
     userName: String,
     viewCount: Number,
     cardId: String,
@@ -28,6 +35,30 @@ export default {
       type: String,
       required: true
     }
+  },
+  computed: {
+    ...mapState({
+      broadcasterId: state => state.games.currentBroadcasterId
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setBroadcasterId: "games/SET_BROADCASTER_ID",
+      setBroadcasterName: "games/SET_BROADCASTER_NAME"
+    }),
+
+    handleBroadcasterId(user_id, userName) {
+      this.setBroadcasterId(user_id); //update currentBroadcasterId state
+      this.setBroadcasterName(userName); //update currentBroadcasterName state
+      router.push({
+        name: "TopBroadcasterClips",
+        params: { broadcasterId: userName }
+      });
+    }
   }
 };
 </script>
+
+
+
+<!--TODODOOD HANDLER FOR BUTTON CLICK THAT REDIRECTS TO BRODCASTER ID CLIPS -->

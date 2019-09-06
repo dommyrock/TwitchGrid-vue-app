@@ -10,7 +10,12 @@
       style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-button href="#" @click="handleGameId(cardId)" variant="primary">Live channels</b-button>
+      <b-button href="#" @click="handleGameId(cardId,title)" variant="outline-danger">Live channels</b-button>
+      <b-button
+        href="#"
+        @click="handleGameIdClips(cardId,title)"
+        variant="outline-primary"
+      >Top clips</b-button>
     </b-card>
   </div>
 </template>
@@ -35,17 +40,28 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({ setGameId: "games/SET_CURRENTGAMEID" }),
+    ...mapMutations({
+      setGameId: "games/SET_CURRENTGAMEID",
+      setGameName: "games/SET_GAME_NAME"
+    }),
 
-    handleGameId(cardId) {
+    handleGameId(cardId, title) {
       this.$emit("clickedCard", cardId);
       //SET currentGameId to clicked cardId == game_id
       this.setGameId(cardId); //Mutation called to update state
-      //fetch game from store
+      this.setGameName(title);
 
       router.push({
         name: "TopGameStreams",
-        params: { gameId: cardId }
+        params: { gameId: title }
+      });
+    },
+    handleGameIdClips(cardId, title) {
+      this.setGameId(cardId);
+      this.setGameName(title);
+      router.push({
+        name: "TopGameClips",
+        params: { gameId: title }
       });
     }
     //or : <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>

@@ -10,14 +10,27 @@ const types = {
     SET_GAMES_DATA: "SET_GAMES_DATA",
     SET_STREAMS_DATA: "SET_STREAMS_DATA",
     SET_GAMESTREAMS_DATA: "SET_GAMESTREAMS_DATA",
-    SET_CURRENTGAMEID: "SET_CURRENTGAMEID"
+    SET_CURRENTGAMEID: "SET_CURRENTGAMEID",
+    SET_GAME_CLIPS_DATA: "SET_GAME_CLIPS_DATA",
+    SET_BRODCASTER_CLIPS_DATA: "SET_BRODCASTER_CLIPS_DATA",
+    SET_BROADCASTER_ID: "SET_BROADCASTER_ID",
+    SET_GAME_NAME: "SET_GAME_NAME",
+    SET_BROADCASTER_NAME: "SET_BROADCASTER_NAME"
+
+
+
 }
 const state = {
     test: 'test-games-state',
     currentGameId: "",
+    currentGame: "",
+    currentBroadcasterId: "",
+    currentBroadcasterName: "",
     gamesResponseData: [],
     streamsResponseData: [],
-    gameStreamsResponseData: []
+    gameStreamsResponseData: [],
+    gameClipsResponseData: [],
+    brodcasterClipsResponseData: []
 
 }
 //getting state
@@ -37,6 +50,21 @@ const mutations = {
     },
     [types.SET_CURRENTGAMEID](state, gameId) {
         state.currentGameId = gameId
+    },
+    [types.SET_GAME_CLIPS_DATA](state, data) {
+        state.gameClipsResponseData = data
+    },
+    [types.SET_BRODCASTER_CLIPS_DATA](state, data) {
+        state.brodcasterClipsResponseData = data
+    },
+    [types.SET_BROADCASTER_ID](state, broadcasterId) {
+        state.currentBroadcasterId = broadcasterId
+    },
+    [types.SET_GAME_NAME](state, name) {
+        state.currentGame = name
+    },
+    [types.SET_BROADCASTER_NAME](state, name) {
+        state.currentBroadcasterName = name
     }
 
 }
@@ -91,6 +119,42 @@ const actions = {
                         item.thumbnail_url = newUrl
                     })
                     commit(types.SET_GAMESTREAMS_DATA, dataArray)
+                    //return if sucessfull
+                    resolve(dataArray)
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        })
+    },
+    async getGameClipsData({ commit }, gameId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await streamsApi.getGameClips(gameId).then(res => {
+                    let dataArray = res.data
+                    let replacedArray = dataArray.map(item => {
+                        let newUrl = item.thumbnail_url.replace("{width}", "300").replace("{height}", "300");
+                        item.thumbnail_url = newUrl
+                    })
+                    commit(types.SET_GAME_CLIPS_DATA, dataArray)
+                    //return if sucessfull
+                    resolve(dataArray)
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        })
+    },
+    async getBroadcasterClipsData({ commit }, brodcasterId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await streamsApi.getBroadcasterClips(brodcasterId).then(res => {
+                    let dataArray = res.data
+                    let replacedArray = dataArray.map(item => {
+                        let newUrl = item.thumbnail_url.replace("{width}", "300").replace("{height}", "300");
+                        item.thumbnail_url = newUrl
+                    })
+                    commit(types.SET_BRODCASTER_CLIPS_DATA, dataArray)
                     //return if sucessfull
                     resolve(dataArray)
                 })

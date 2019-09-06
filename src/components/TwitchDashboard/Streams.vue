@@ -8,6 +8,7 @@
           :img="item.thumbnail_url"
           :title="item.title"
           :userName="item.user_name"
+          :user_id="item.user_id"
           :viewCount="item.viewer_count"
           :key="item.id"
         />

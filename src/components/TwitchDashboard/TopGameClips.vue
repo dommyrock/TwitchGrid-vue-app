@@ -1,15 +1,16 @@
 <template>
   <div>
-    <h4>Top --{{game}}-- streams by view count:</h4>
+    <h4>Top {{game}} Clips</h4>
     <b-container fluid>
       <b-row align-h="center">
-        <streams-card
-          v-for="item in gamesStreamsData"
+        <clips-card
+          v-for="item in gameClipsResponseData"
           :img="item.thumbnail_url"
           :title="item.title"
-          :userName="item.user_name"
-          :viewCount="item.viewer_count"
+          :broadcaster="item.broadcaster_name"
+          :viewCount="item.view_count"
           :key="item.id"
+          :created="item.created_at"
         />
       </b-row>
     </b-container>
@@ -18,12 +19,12 @@
 
  <script>
 import { mapState, mapActions } from "vuex";
-import StreamsCard from "./Cards/StreamsCard";
-import { stat } from "fs";
+// import StreamsCard from "./Cards/StreamsCard";
+import ClipsCard from "./Cards/ClipsCard";
 
 export default {
-  name: "TopGameStreams",
-  components: { StreamsCard },
+  name: "TopGameClips",
+  components: { ClipsCard },
   data() {
     return {};
   },
@@ -32,19 +33,19 @@ export default {
   },
   computed: {
     ...mapState({
-      gamesStreamsData: state => state.games.gameStreamsResponseData,
+      gameClipsResponseData: state => state.games.gameClipsResponseData,
       gameId: state => state.games.currentGameId,
       game: state => state.games.currentGame
     })
   },
   methods: {
     ...mapActions({
-      getGameStreamsData: "games/getGameStreamsData"
+      getGameClipsData: "games/getGameClipsData"
     }),
     async getData() {
       //Fetch "currentGameId" state
       const game_id = this.gameId;
-      const data = await this.getGameStreamsData(game_id); //switch to TopGameStreams route -component
+      const data = await this.getGameClipsData(game_id); //switch to TopGameStreams route -component
     }
   }
 };
