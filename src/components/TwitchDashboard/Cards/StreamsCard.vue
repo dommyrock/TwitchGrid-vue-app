@@ -11,6 +11,7 @@
       class="mb-2"
     >
       <b-card-text>{{"Viewers: "+viewCount}}</b-card-text>
+      <b-button href="#" @click="handleLiveStream(userName)" variant="outline-danger">Live</b-button>
       <b-button
         href="#"
         @click="handleBroadcasterId(user_id,userName)"
@@ -54,6 +55,9 @@ export default {
         name: "TopBroadcasterClips",
         params: { broadcasterId: userName }
       });
+    },
+    handleLiveStream(userName) {
+      //TODO handle live click and reddirect to Stream Component
     }
   }
 };

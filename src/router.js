@@ -7,6 +7,7 @@ const Streams = () => import("./components/TwitchDashboard/Streams");
 const TopGameStreams = () => import("./components/TwitchDashboard/TopGameStreams")
 const TopGameClips = () => import("./components/TwitchDashboard/TopGameClips")
 const TopBroadcasterClips = () => import("./components/TwitchDashboard/TopBroadcasterClips")
+const EmbeddedStream = () => import("./components/TwitchDashboard/Stream")
 
 Vue.use(Router);
 
@@ -30,12 +31,17 @@ export default new Router({
     {
       path: "/game/clips/:gameId",
       name: "TopGameClips",
-      component: TopGameClips //TODO ... when you go to specific streamer page (it will have redirect btn/link to channels clips)
+      component: TopGameClips
     },
     {
       path: "/broadcaster/clips/:broadcasterId",
       name: "TopBroadcasterClips",
       component: TopBroadcasterClips
+    },
+    {
+      path: "/broadcaster/stream/:broadcasterId",
+      name: "Stream",
+      component: EmbeddedStream
     }
 
   ],
