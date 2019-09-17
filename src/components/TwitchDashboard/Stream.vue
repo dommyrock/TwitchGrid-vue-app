@@ -1,7 +1,7 @@
-<!--redirected here from topGameStreams component (need to pass acc id here)  -->
+<!--redirected here from "StreamsCard" component (need to pass acc id here)  -->
 <template>
   <iframe
-    src="https://player.twitch.tv/?channel=rush"
+    :src="link + currentBroadcasterName"
     height="720"
     width="1080"
     frameborder="0"
@@ -11,8 +11,16 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      link: state => state.games.streamLink,
+      currentBroadcasterName: state => state.games.currentBroadcasterName //fetch name from state for url contatenation
+    })
+  }
+};
 </script>
 
-<style>
+<style scoped>
 </style>

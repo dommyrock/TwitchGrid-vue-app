@@ -40,7 +40,7 @@ export default new Router({
     },
     {
       path: "/broadcaster/stream/:broadcasterId",
-      name: "Stream",
+      name: "EmbeddedStream",
       component: EmbeddedStream
     }
 

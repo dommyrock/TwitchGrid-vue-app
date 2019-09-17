@@ -15,7 +15,8 @@ const types = {
     SET_BROADCASTER_CLIPS_DATA: "SET_BROADCASTER_CLIPS_DATA",
     SET_BROADCASTER_ID: "SET_BROADCASTER_ID",
     SET_GAME_NAME: "SET_GAME_NAME",
-    SET_BROADCASTER_NAME: "SET_BROADCASTER_NAME"
+    SET_BROADCASTER_NAME: "SET_BROADCASTER_NAME",
+    SET_STREAM_LINK: "SET_STREAM_LINK"
 
 
 
@@ -30,7 +31,8 @@ const state = {
     streamsResponseData: [],
     gameStreamsResponseData: [],
     gameClipsResponseData: [],
-    brodcasterClipsResponseData: []
+    brodcasterClipsResponseData: [],
+    streamLink: "https://player.twitch.tv/?channel="
 
 }
 //getting state
@@ -65,6 +67,9 @@ const mutations = {
     },
     [types.SET_BROADCASTER_NAME](state, name) {
         state.currentBroadcasterName = name
+    },
+    [types.SET_STREAM_LINK](state, broadcaster) {
+        state.streamLink += broadcaster
     }
 
 }

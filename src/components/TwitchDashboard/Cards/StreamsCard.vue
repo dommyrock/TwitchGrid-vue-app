@@ -45,7 +45,8 @@ export default {
   methods: {
     ...mapMutations({
       setBroadcasterId: "games/SET_BROADCASTER_ID",
-      setBroadcasterName: "games/SET_BROADCASTER_NAME"
+      setBroadcasterName: "games/SET_BROADCASTER_NAME",
+      setStreamLink: "games/SET_STREAM_LINK"
     }),
 
     handleBroadcasterId(user_id, userName) {
@@ -57,12 +58,12 @@ export default {
       });
     },
     handleLiveStream(userName) {
-      //TODO handle live click and reddirect to Stream Component
+      this.setBroadcasterName(userName); //mutate state, and pass userName to "Stream" Component
+      router.push({
+        name: "EmbeddedStream",
+        params: { broadcasterId: userName }
+      });
     }
   }
 };
 </script>
-
-
-
-<!--TODODOOD HANDLER FOR BUTTON CLICK THAT REDIRECTS TO BRODCASTER ID CLIPS -->
