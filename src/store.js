@@ -1,24 +1,24 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import games from "./store/modules/games"
+// import Vue from "vue";
+// import Vuex from "vuex";
+// import games from "./store/modules/games"
 
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
-// const state = {
-//   gamesResponseData: []
-// }
+// // const state = {
+// //   gamesResponseData: []
+// // }
 
-export default new Vuex.Store({
-  state: {
-  },
-  //mutate/alter data/state
-  mutations: {
-  },
-  //make calls
-  actions: {
-  },
-  modules: {
-    games
-  }
-});
+// export default new Vuex.Store({
+//   state: {
+//   },
+//   //mutate/alter data/state
+//   mutations: {
+//   },
+//   //make calls
+//   actions: {
+//   },
+//   modules: {
+//     games
+//   }
+// });

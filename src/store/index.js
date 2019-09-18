@@ -1,15 +1,24 @@
-// import Vuex from "vuex"
-// import Vue from "vue"
-// import games from "./modules/games"
+import Vue from "vue";
+import Vuex from "vuex";
+import games from "./modules/games"
 
-// Vue.use(Vuex)
 
-// //todo actions, mutations ....
+Vue.use(Vuex);
 
-// //modules (sub stores)
-// //modules you can talk to local state , other modules states or global state
-// export default new Vuex.Store({
-//     modules: {
-//         games
-//     }
-// })
+// const state = {
+//   gamesResponseData: []
+// }
+
+export default new Vuex.Store({
+    state: {
+    },
+    //mutate/alter data/state
+    mutations: {
+    },
+    //make calls
+    actions: {
+    },
+    modules: {
+        games
+    }
+});
