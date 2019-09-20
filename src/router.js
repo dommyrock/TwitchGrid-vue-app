@@ -8,6 +8,7 @@ const TopGameStreams = () => import("./components/TwitchDashboard/TopGameStreams
 const TopGameClips = () => import("./components/TwitchDashboard/TopGameClips")
 const TopBroadcasterClips = () => import("./components/TwitchDashboard/TopBroadcasterClips")
 const EmbeddedStream = () => import("./components/TwitchDashboard/Stream")
+const EmbeddedClip = () => import("./components/TwitchDashboard/Clip")
 
 Vue.use(Router);
 
@@ -39,10 +40,16 @@ export default new Router({
       component: TopBroadcasterClips
     },
     {
-      path: "/broadcaster/stream/:broadcasterId",
+      path: "/broadcaster/:broadcasterId",
       name: "EmbeddedStream",
       component: EmbeddedStream
+    },
+    {
+      path: "/clip/channel/:broadcasterName",
+      name: "EmbeddedClip",
+      component: EmbeddedClip
     }
+
 
   ],
   mode: "history" //disable # prefix in routes
