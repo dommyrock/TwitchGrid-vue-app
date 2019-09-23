@@ -1,13 +1,15 @@
 <!--redirected here from "StreamsCard" component (need to pass acc id here)  -->
 <template>
-  <iframe
-    :src="link + currentBroadcasterName"
-    height="720"
-    width="1080"
-    frameborder="0"
-    scrolling="no"
-    allowfullscreen="true"
-  ></iframe>
+  <div class="back">
+    <iframe
+      :src="link + currentBroadcasterName"
+      height="720"
+      width="1080"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen="true"
+    ></iframe>
+  </div>
 </template>
 
 <script>
@@ -23,4 +25,7 @@ export default {
 </script>
 
 <style scoped>
+.back {
+  background-color: #6b6b6b;
+}
 </style>
