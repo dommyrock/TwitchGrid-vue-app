@@ -11,6 +11,7 @@
           :viewCount="item.view_count"
           :key="item.id"
           :created="item.created_at"
+          :embed_url="item.embed_url"
         />
       </b-row>
     </b-container>

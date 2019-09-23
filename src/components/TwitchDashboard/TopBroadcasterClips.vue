@@ -12,6 +12,7 @@
           :key="item.id"
           :created="item.created_at"
           :user_id="item.user_id"
+          :embed_url="item.embed_url"
         />
       </b-row>
     </b-container>

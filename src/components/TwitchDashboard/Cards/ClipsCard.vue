@@ -10,7 +10,7 @@
       style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-button href="#" @click="handleClipEmbed(broadcaster)" variant="outline-info">View clip</b-button>
+      <b-button href="#" @click="handleClipEmbed(embed_url)" variant="outline-info">View clip</b-button>
       <b-card-text>{{"Views: "+viewCount}}</b-card-text>
       <b-card-text>{{"Created: " +created}}</b-card-text>
     </b-card>
@@ -33,11 +33,11 @@ export default {
     embed_url: String
   },
   methods: {
-    handleClipEmbed(broadcaster) {
+    handleClipEmbed(embed_url) {
       //push to clip component
       router.push({
         name: "EmbeddedClip",
-        params: { broadcasterName: broadcaster }
+        params: { embed_url: embed_url }
       });
     }
   }

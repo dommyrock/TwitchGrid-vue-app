@@ -45,9 +45,10 @@ export default new Router({
       component: EmbeddedStream
     },
     {
-      path: "/clip/channel/:broadcasterName",
+      path: "/clip/channel/:embed_url",
       name: "EmbeddedClip",
-      component: EmbeddedClip
+      component: EmbeddedClip,
+      props: true //When props is set to true, the route.params will be set as the component props
     }
 
 
