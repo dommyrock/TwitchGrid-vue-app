@@ -5,6 +5,6 @@ And Bootstrap-vue in project https://bootstrap-vue.js.org/
 
 Used Twitch API endpoints @ https://dev.twitch.tv/docs/api/reference
 
-*NOTE: I excluded 2x src/api files from project that perform http-get-requests to Twitch endpoints(api keys stored there)s.
+*NOTE: I excluded 2x src/api files from project that perform http-get-requests to Twitch endpoints(api keys stored there).
 
 Made by: Dominik Polzer
